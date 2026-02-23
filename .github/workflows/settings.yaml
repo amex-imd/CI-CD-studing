@@ -12,6 +12,7 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
         python: ["3.9", "3.10", "3.11"]
+      fail-fast: false
 
     name: ${{ matrix.os }} | Python ${{ matrix.python }}
     steps:
@@ -29,3 +30,39 @@ jobs:
 
       - name: Tests
         run: python -m unittest discover tests/
+
+  docker-build:
+    needs: testing
+    runs-on: ${{matrix.os}}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+      fail-fast: false
+
+    name: Build & Testing Docker Container
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Checking Dockerfile
+        run: |
+          if [ ! -f Dockerfile ]; then
+            echo "ERROR: Dockerfile not found!"
+            exit 1
+          fi
+          echo "AWESOME!"
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Build Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: false
+          load: true
+          tags: my-app:${{ matrix.os }}
+
+      - name: Test Docker image
+        run: |
+          docker run --rm my-app:${{ matrix.os }} python -c
