@@ -8,6 +8,10 @@ on:
 jobs:
   testing:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        versions: ["3.9", "3.10", "3.11"]
+
     name: Testing
     steps:
       - name: Check out code
@@ -16,7 +20,7 @@ jobs:
       - name: Python Installing
         uses: actions/setup-python@v4
         with:
-          python-version: "3.10"
+          python-version: ${{ matrix.versions }}
 
       - name: Requirements Installing
         run: pip install -r requirements.txt
