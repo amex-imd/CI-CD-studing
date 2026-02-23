@@ -13,7 +13,7 @@ jobs:
         os: [ubuntu-latest, windows-latest, macos-latest]
         python: ["3.9", "3.10", "3.11"]
 
-    name: Testing
+    name: ${{ matrix.os }} | Python ${{ matrix.python }}
     steps:
       - name: Check out code
         uses: actions/checkout@v3
@@ -26,7 +26,8 @@ jobs:
 
       - name: Requirements Installing
         run: pip install -r requirements.txt
-        cache: "pip"
+        with:
+          cache: "pip"
 
       - name: Tests
         run: python -m unittest discover tests/
