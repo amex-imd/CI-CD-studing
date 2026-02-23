@@ -7,7 +7,7 @@ class TestMaxLenChain(unittest.TestCase):
         self.assertEqual(maxLenChainWithRandomDelete([]), 0)
     
     def test_single_one(self):
-        self.assertEqual(maxLenChainWithRandomDelete([1]), 0)
+        self.assertEqual(maxLenChainWithRandomDelete([1]), 0)  
     
     def test_single_zero(self):
         self.assertEqual(maxLenChainWithRandomDelete([0]), 0)
