@@ -3,8 +3,7 @@ name: Settings
 on:
   push:
     branches:
-      - "main"
-      - "master"
+      - main
 
 jobs:
   testing:
