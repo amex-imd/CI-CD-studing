@@ -40,7 +40,7 @@ class TestMaxLenChain(unittest.TestCase):
         self.assertEqual(maxLenChainWithRandomDelete([1, 1, 1, 1, 0, 1, 0]), 5)
     
     def test_multiple_opportunities(self):
-        self.assertEqual(maxLenChainWithRandomDelete([1, 1, 0, 1, 1, 0, 1, 1, 1]), 6)
+        self.assertEqual(maxLenChainWithRandomDelete([1, 1, 0, 1, 1, 0, 1, 1, 1]), 5)
     
     def test_two_ones(self):
         self.assertEqual(maxLenChainWithRandomDelete([1, 1]), 1)
