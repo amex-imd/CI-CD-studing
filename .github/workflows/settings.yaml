@@ -7,10 +7,11 @@ on:
 
 jobs:
   testing:
-    runs-on: ubuntu-latest
+    runs-on: ${{matrix.os}}
     strategy:
       matrix:
-        versions: ["3.9", "3.10", "3.11"]
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python: ["3.9", "3.10", "3.11"]
 
     name: Testing
     steps:
@@ -20,7 +21,7 @@ jobs:
       - name: Python Installing
         uses: actions/setup-python@v4
         with:
-          python-version: ${{ matrix.versions }}
+          python-version: ${{ matrix.python }}
 
       - name: Requirements Installing
         run: pip install -r requirements.txt
