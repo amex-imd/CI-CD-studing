@@ -22,7 +22,7 @@ class TestMaxLenChain(unittest.TestCase):
         self.assertEqual(maxLenChainWithRandomDelete([1, 1, 0, 1, 1, 1]), 5)
     
     def test_multiple_zeros(self):
-        self.assertEqual(maxLenChainWithRandomDelete([1, 1, 0, 1, 0, 1, 1, 1]), 5)
+        self.assertEqual(maxLenChainWithRandomDelete([1, 1, 0, 1, 0, 1, 1, 1]), 4)
     
     def test_zeros_at_edges(self):
         self.assertEqual(maxLenChainWithRandomDelete([0, 1, 1, 1, 0]), 3)
